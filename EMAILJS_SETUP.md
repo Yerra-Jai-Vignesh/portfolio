@@ -64,10 +64,10 @@ After setup, your `script.js` should look like this:
 
 ```javascript
 // Initialize EmailJS with your actual public key
-emailjs.init("user_abc123def456"); // Your actual public key
+emailjs.init("IJHyYiAnH5GLCXS1d"); // Your actual public key
 
 // Send email with your actual service and template IDs
-emailjs.send('service_gmail', 'template_contact', templateParams)
+emailjs.send('service_246q42c', 'template_9rxgw5i', templateParams)
 ```
 
 ## 📊 Free Plan Limits

@@ -158,20 +158,33 @@ function initContactForm() {
             submitBtn.textContent = 'Sending...';
             submitBtn.disabled = true;
             
-            // Send email using EmailJS
-            const templateParams = {
+            // Send notification email to you
+            const notificationParams = {
                 from_name: name,
                 from_email: email,
                 message: message,
                 to_email: 'jaivigneshyerra@gmail.com'
             };
             
-            console.log('Sending email with params:', templateParams);
+            // Send auto-reply to the person who contacted you
+            const autoReplyParams = {
+                to_name: name,
+                to_email: email,
+                from_name: 'Yerra Jai Vignesh',
+                from_email: 'jaivigneshyerra@gmail.com'
+            };
             
-            emailjs.send('service_246q42c', 'template_v16y9r1', templateParams)
-                .then(function(response) {
-                    console.log('SUCCESS!', response.status, response.text);
-                    showToast('Message sent successfully!', 'success');
+            console.log('Sending notification email with params:', notificationParams);
+            console.log('Sending auto-reply with params:', autoReplyParams);
+            
+            // Send both emails
+            Promise.all([
+                emailjs.send('service_246q42c', 'template_v16y9r1', notificationParams), // Notification to you
+                emailjs.send('service_246q42c', 'YOUR_AUTO_REPLY_TEMPLATE_ID', autoReplyParams) // Auto-reply to them
+            ])
+                .then(function(responses) {
+                    console.log('SUCCESS! Both emails sent:', responses);
+                    showToast('Message sent successfully! You will receive a confirmation email shortly.', 'success');
                     contactForm.reset();
                 }, function(error) {
                     console.log('FAILED...', error);
