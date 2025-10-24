@@ -180,7 +180,7 @@ function initContactForm() {
             // Send both emails
             Promise.all([
                 emailjs.send('service_246q42c', 'template_v16y9r1', notificationParams), // Notification to you
-                emailjs.send('service_246q42c', 'YOUR_AUTO_REPLY_TEMPLATE_ID', autoReplyParams) // Auto-reply to them
+                emailjs.send('service_246q42c', 'template_9rxgw5i', autoReplyParams) // Auto-reply to them
             ])
                 .then(function(responses) {
                     console.log('SUCCESS! Both emails sent:', responses);
