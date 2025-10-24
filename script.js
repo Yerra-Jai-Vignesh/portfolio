@@ -128,13 +128,8 @@ function initContactForm() {
     const contactForm = document.getElementById('contactForm');
     const toast = document.getElementById('toast');
     
-    // Initialize EmailJS
-    emailjs.init("IJHyYiAnH5GLCXS1d"); // Your actual public key
-    
     if (contactForm) {
         contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            
             // Get form data
             const formData = new FormData(contactForm);
             const name = formData.get('name');
@@ -143,11 +138,13 @@ function initContactForm() {
             
             // Basic validation
             if (!name || !email || !message) {
+                e.preventDefault();
                 showToast('Please fill in all fields', 'error');
                 return;
             }
             
             if (!isValidEmail(email)) {
+                e.preventDefault();
                 showToast('Please enter a valid email address', 'error');
                 return;
             }
@@ -158,44 +155,11 @@ function initContactForm() {
             submitBtn.textContent = 'Sending...';
             submitBtn.disabled = true;
             
-            // Send notification email to you
-            const notificationParams = {
-                from_name: name,
-                from_email: email,
-                message: message,
-                to_email: 'jaivigneshyerra@gmail.com'
-            };
+            // Show success message
+            showToast('Sending message...', 'success');
             
-            // Send auto-reply to the person who contacted you
-            const autoReplyParams = {
-                to_name: name,
-                to_email: email,
-                from_name: 'Yerra Jai Vignesh',
-                from_email: 'jaivigneshyerra@gmail.com'
-            };
-            
-            console.log('Sending notification email with params:', notificationParams);
-            console.log('Sending auto-reply with params:', autoReplyParams);
-            
-            // Send both emails
-            Promise.all([
-                emailjs.send('service_246q42c', 'template_v16y9r1', notificationParams), // Notification to you
-                emailjs.send('service_246q42c', 'template_9rxgw5i', autoReplyParams) // Auto-reply to them
-            ])
-                .then(function(responses) {
-                    console.log('SUCCESS! Both emails sent:', responses);
-                    showToast('Message sent successfully! You will receive a confirmation email shortly.', 'success');
-                    contactForm.reset();
-                }, function(error) {
-                    console.log('FAILED...', error);
-                    console.log('Error details:', error.text || error.message);
-                    showToast(`Failed to send message: ${error.text || error.message}`, 'error');
-                })
-                .finally(function() {
-                    // Reset button state
-                    submitBtn.textContent = originalText;
-                    submitBtn.disabled = false;
-                });
+            // FormSubmit will handle the rest automatically
+            // The form will submit to FormSubmit and redirect to the thank you page
         });
     }
 }

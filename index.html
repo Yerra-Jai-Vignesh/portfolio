@@ -36,9 +36,6 @@
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
     
-    <!-- EmailJS -->
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-    
     <!-- Custom CSS -->
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -474,7 +471,13 @@
                 
                 <!-- Contact Form -->
                 <div class="contact-form">
-                    <form id="contactForm" class="space-y-6">
+                    <form action="https://formsubmit.co/jaivigneshyerra@gmail.com" method="POST" id="contactForm" class="space-y-6">
+                        <!-- FormSubmit Configuration -->
+                        <input type="hidden" name="_subject" value="🦇 New Contact from Batman Portfolio">
+                        <input type="hidden" name="_captcha" value="false">
+                        <input type="hidden" name="_next" value="https://yerra-jai-vignesh.github.io/portfolio/#contact">
+                        <input type="hidden" name="_autoresponse" value="Thank you for contacting Yerra Jai Vignesh! 🦇 I've received your message and will get back to you within 24 hours. Best regards, Yerra Jai Vignesh - Python Developer | Web Developer | Tech Enthusiast">
+                        
                         <div>
                             <label for="name" class="block text-sm font-medium mb-2">Name</label>
                             <input type="text" id="name" name="name" required 
