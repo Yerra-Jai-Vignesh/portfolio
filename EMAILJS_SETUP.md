@@ -55,7 +55,7 @@ Replace the placeholder values in `script.js`:
 ```javascript
 // Replace these values in script.js
 emailjs.init("IJHyYiAnH5GLCXS1d"); // Your actual public key
-emailjs.send('service_246q42c', 'template_v16y9r1', templateParams)
+emailjs.send('service_246q42c', 'template_9rxgw5i', templateParams)
 ```
 
 ## 🔧 Configuration Example
